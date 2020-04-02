@@ -1,36 +1,37 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-	<!-- To be able to deploy snapshots/releases to sonatype / maven central: 
-		https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide -->
-	<parent>
-		<groupId>de.javakaffee</groupId>
-		<artifactId>persistent-queue-project</artifactId>
-		<version>1.2-SNAPSHOT</version>
-	</parent>
+    <!-- To be able to deploy snapshots/releases to sonatype / maven central: 
+    https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide -->
+    <parent>
+        <groupId>de.javakaffee</groupId>
+        <artifactId>persistent-queue-project</artifactId>
+        <version>1.2-SNAPSHOT</version>
+    </parent>
 
-	<artifactId>persistent-queue</artifactId>
-	<version>1.2-SNAPSHOT</version>
-	<packaging>jar</packaging>
-	<name>persistent queue</name>
-	<description>A simple reliable, persistent queue.</description>
+    <artifactId>persistent-queue</artifactId>
+    <version>1.2-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>persistent queue</name>
+    <description>A simple reliable, persistent queue.</description>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.sleepycat</groupId>
-			<artifactId>je</artifactId>
-			<version>4.1.10</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-lgpl</artifactId>
-			<version>1.6.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.sleepycat</groupId>
+            <artifactId>je</artifactId>
+            <version>4.1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-lgpl</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
@@ -38,29 +39,29 @@
             <scope>compile</scope>
         </dependency>
 
-		<!-- Testing -->
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.0.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>${slf4j.version}</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>6.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
-	<repositories>
-		<!-- TODO: upload as 3rd party artifact -->
-		<repository>
-			<id>oracle releases</id>
-			<name>Oracle Released Java Packages</name>
-			<url>http://download.oracle.com/maven</url>
-			<layout>default</layout>
-		</repository>
-	</repositories>
+    <repositories>
+        <!-- TODO: upload as 3rd party artifact -->
+        <repository>
+            <id>oracle releases</id>
+            <name>Oracle Released Java Packages</name>
+            <url>http://download.oracle.com/maven</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
 
 </project>
