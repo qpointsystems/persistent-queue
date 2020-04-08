@@ -20,9 +20,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 
 /**
  * This example shows how to setup the queue, how to consume it
@@ -30,7 +28,7 @@ import org.slf4j.LoggerFactory;
  */
 public class RichBDBQueueExample {
     
-    private static final Logger LOG = LoggerFactory.getLogger(RichBDBQueueExample.class);
+    private static final Logger logger = Logger.getLogger(RichBDBQueueExample.class);
     
     public static void main(String[] args) throws IOException,
     InterruptedException, BrokenBarrierException {
@@ -71,7 +69,7 @@ public class RichBDBQueueExample {
         final Consumer<String> printingConsumer = new Consumer<String>() {
             @Override
             public boolean consume(String item) {
-                LOG.info("Got message: {}", item);
+                logger.info(String.format("Got message: {%s}", item));
                 return true;
             }
         };

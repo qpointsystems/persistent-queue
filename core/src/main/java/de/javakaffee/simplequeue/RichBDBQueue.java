@@ -17,10 +17,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.Nullable;
+import org.apache.log4j.Logger;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A wrapper around {@link BDBQueue} that provides json serialization and
@@ -32,7 +31,7 @@ import org.slf4j.LoggerFactory;
  */
 public class RichBDBQueue<T> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(RichBDBQueue.class);
+    private static final Logger logger = Logger.getLogger(RichBDBQueue.class);
 
     private final ObjectMapper _mapper;
     private final BDBQueue _q;
@@ -121,10 +120,10 @@ public class RichBDBQueue<T> {
             } catch(final RuntimeException e) {
             	// If we got interrupted we want to exit, so that this client/consumer also is told to exit
             	if(Thread.currentThread().isInterrupted()) {
-                    LOG.error("Consumer got interrupted, exiting / rethrowing exception.", e);
+                    logger.error("Consumer got interrupted, exiting / rethrowing exception.", e);
                     throw e;
             	}
-                LOG.error("Consumer could not read object.", e);
+                logger.error("Consumer could not read object.", e);
             }
         }
         return data != null;
@@ -143,7 +142,7 @@ public class RichBDBQueue<T> {
             synchronized(_monitor) {
                 _monitor.notifyAll();
             }
-            LOG.info("Closing queue.");
+            logger.info("Closing queue.");
             _q.close();
         }
     }
@@ -172,7 +171,7 @@ public class RichBDBQueue<T> {
         try {
             return _mapper.readValue(data, 0, data.length, _type);
         } catch(final Exception e) {
-            LOG.error("Element could not be deserialized, item will be removed. Data: {}", new Object[]{data}, e);
+            logger.error(String.format("Element could not be deserialized, item will be removed. Data: {%s}", new Object[]{data}), e);
             _q.remove();
             return null;
         }
